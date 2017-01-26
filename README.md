@@ -6,3 +6,7 @@
 ...But i still need to write them to make proper READMEs for Github...
 
 so I made this editor, with a preview pane, which has a clone of Githubs styles.
+
+<hr/>
+
+![alt tag](https://raw.githubusercontent.com/adammeola01/git-down/master/screen.png)
