@@ -1,0 +1,108 @@
+@import './reset';
+@import './vars';
+@import './anim';
+@import './github-markdown';
+
+#container {
+	position: absolute;
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 100%;
+	width: 100%;
+	overflow: hidden;
+	font-family: arial;
+
+	#output {
+		position: absolute;
+		top: 0;
+		right: 0;
+		height: 100%;
+		width: 50%;
+		box-sizing: border-box;
+		padding: 10px;
+		overflow: auto;
+		background-color: #fff;
+		color: #333;
+	}
+
+	textarea {
+		position: absolute;
+		top: 0;
+		left: 0;
+		height: 100%;
+		width: 50%;
+		border: none;
+		box-sizing: border-box;
+		padding: 10px;
+		background-color: $dark;
+		color: $light;
+		font-size: 17px;
+		text-shadow: 1px 1px #000;
+		cursor: url('./curs.png'), auto;
+	}
+
+	span.label {
+		border: 2px solid #fff;
+		background: #000;
+		color: #fff;
+		font-size: 10px;
+		padding: 3px;
+		opacity: 0.5;
+	}
+
+	#notSaved {
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		opacity: 0;
+		transition: opacity 200ms linear;
+
+		span.label {
+			border: 2px solid #fff;
+			background: #000;
+			color: #fff;
+			font-size: 10px;
+			position: absolute;
+			left: 0;
+			width: 50px;
+			padding: 3px 0;
+			text-shadow: 1px 1px #000;
+			text-align: center;
+			bottom: 0;
+		}
+
+		img {
+			position: absolute;
+			width: 4px;
+			height: 17px;
+			left: 5px;
+			bottom: 23px;
+			transform-origin: 50% 80%;
+		}
+
+		&.active {
+			opacity: 1;
+			img {
+				animation: bounce 800ms cubic-bezier(0,0.46,0.28,0.99);
+			}
+		}
+
+	}
+	#msgBox{
+		position: absolute;
+		top: -1000px;
+		opacity: 0;
+		left: calc(50% - 220px);
+		border: 3px solid;
+		width: 200px;
+		border-color: red;
+		color: red;
+		padding: 10px;
+		box-sizing: border-box;
+		background-color: rgba(0,0,0,.5);
+		box-shadow: 0px 0px 5px #000;
+		text-shadow: 1px 1px 2px #000;
+		border-radius: 3px;
+	}
+}

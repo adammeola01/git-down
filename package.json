@@ -1,0 +1,21 @@
+{
+  "name": "git-down",
+  "private": true,
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "electron index.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "electron": "^1.4.15"
+  },
+  "dependencies": {
+    "give-parents": "^1.0.2",
+    "jquery": "^3.1.1",
+    "showdown": "^1.6.0",
+    "velocity-animate": "^1.4.0"
+  }
+}
