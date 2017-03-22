@@ -65,6 +65,20 @@ function showOuput() {
 }
 input.on('change keyup paste', showOuput);
 var ipcR = {
+	exportHTML:{
+		in: function(){
+			console.log('in');
+			var inputTXT = input.val();
+			console.log(converter.makeHtml(inputTXT));
+			this.parent.send('exportHTML', converter.makeHtml(inputTXT));
+		},
+		complete: function(){
+			showMSG({
+				color: '#0ff114',
+				txt: 'Export succesful'
+			});
+		}
+	},
 	save: { in: function(args) {
 			currentTXT = input.val();
 			this.out(currentTXT);

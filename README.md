@@ -9,4 +9,4 @@ so I made this editor, with a preview pane, which has a clone of Githubs styles.
 
 <hr/>
 
-![alt tag](https://raw.githubusercontent.com/adammeola01/git-down/master/screen.png)
+![](https://raw.githubusercontent.com/adammeola01/git-down/master/screen.png)

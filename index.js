@@ -14,8 +14,58 @@ var currentFile = null;
 var GUItxt = null;
 const giveParents = require('give-parents');
 const ipc = ipcMain;
+const showdown = require('showdown');
+const converter = new showdown.Converter();
 function locationExists(t){try{return stats=fs.lstatSync(t),!0}catch(t){return!1}}
 var ipcM = {
+	exportHTML:{
+		in: function(args){
+			var that = this;
+			function writeFile() {
+				mainWindow.setTitle(currentFile);
+				var html = fs.readFileSync('./exportAssets/1.html', "utf8");
+				html += fs.readFileSync('./exportAssets/github.css', "utf8");
+				html += fs.readFileSync('./exportAssets/2.html', "utf8");
+				html+= '\n';
+				html += args;
+				html+= '\n';
+				html += fs.readFileSync('./exportAssets/3.html', "utf8");
+				fs.writeFile(currentFile.split('').reverse().join('').replace('dm.', 'lmth.').split('').reverse().join(''), html, function(err) {
+					mainWindow.webContents.send('saved', '');
+					that.parent.send({
+						complete: 'exportHTML',
+						args: ''
+					});
+				});
+			}
+			if (!currentFile) {
+				dialog.showOpenDialog({
+					properties: ['openDirectory']
+				}, function(files) {
+					if (files) {
+						currentFile = files[0] + '/README.md';
+						writeFile();
+					}
+				});
+			} else {
+				writeFile();
+			}
+
+			// fs.writeFile('/Users/Adam/Downloads/foo.html', html, function(err) {
+			//
+			// });
+		},
+		out: function(){
+			console.log('got it');
+			this.parent.send({
+				cmd: 'exportHTML',
+				args: ''
+			});
+		},
+		complete: function(){
+
+		}
+	},
 	save: { in: function(txt) {
 			var that = this;
 			function writeFile() {
@@ -197,6 +247,7 @@ function createWindow() {
 	mainWindow.on('closed', function() {
 		mainWindow = null;
 	});
+	mainWindow.webContents.openDevTools();
 }
 let template = [{
 	label: 'File',
@@ -218,7 +269,14 @@ let template = [{
 		click: function() {
 			ipcM.save.out();
 		}
-    }]
+    },
+	{
+		label: 'Export README.html',
+		accelerator: "CmdOrCtrl+E",
+		click: function() {
+			ipcM.exportHTML.out();
+		}
+	}]
 }, {
 	label: "Edit ",
 	submenu: [{
